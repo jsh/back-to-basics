@@ -17,14 +17,14 @@ setup_history() {
     HISTFILE=~/.shhh_history            # instead of ~/.bash_history
     trap 'history -w' EXIT              # write out history list to $HISTFILE on exit
 }
-define_builtins() {
+define_builtin_commands() {
     # builtin commands
-    hello() { echo "hello, BLUG!"; }    # if this works, you're running this shell
+    shhh() { echo "Hey BLUG: Shhh!"; }  # if this works, you're running this shell
     source()                            # builtin version! overrides bash builtin
     {
         local line                      # do not use global value
-        while read line; do
-            eval $line;
+        while read -r line; do
+            eval "$line"
         done < $1                       # first func argument, the file to source
     }
 }
@@ -36,6 +36,7 @@ set_builtin_defaults() {
     PS1='@ '                            # default prompt, from Thompson shell
     set -i                              # mark shell interactive
     set -m                              # monitor mode (enable job control)
+    define_builtin_commands             # illustrate builtin commands
 }
 read_rc_settings() {                    # rc stands for "run commands"
     local RCFILE=~/.shhhrc              # the config file
@@ -45,7 +46,7 @@ read_rc_settings() {                    # rc stands for "run commands"
 repl() {
     local line
     # read-execute-print loop
-    while read -ep "$PS1" line; do      # PS1 is the user's prompt, -e turns on readline editing
+    while read -rep "$PS1" line; do     # PS1 is the user's prompt, -e turns on readline editing
         eval "$line"                    # like "execve()" in bash, zsh, et al.
         history -s -- "$line"           # store line in $HISTFILE
     done
@@ -53,9 +54,9 @@ repl() {
 
 config
 read_rc_settings
-[ $(id -u) = 0 ] && PS1='# '            # shortcut if…then, like C
+[ "$(id -u)" = 0 ] && PS1='# '          # shortcut if…then, like C
 if [ $# = 0 ]; then
     repl
 else
-    cat $1 | repl                       # permit shebang invocation
+    cat "$1" | repl                     # permit shebang invocation
 fi
