@@ -1,0 +1,4 @@
+#!/usr/bin/env shhh
+
+date  # does anybody really know what time it is?
+hush  # builtin, only available within shhh
