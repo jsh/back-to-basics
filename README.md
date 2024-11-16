@@ -10,10 +10,20 @@ in case you've made the local version of shhh executable during development.
 
 To run, after installation, type `shhh`, and watch the prompt change to '@ '
 
-Things to try:
+Here are some things to try:
 
 - Invoke the builtin, `hush`.
 - Verify that the distributed rc file is being read with the command "hello".
 - Become root, with `sudo su`, and see the prompt change to '# '.
 - Try vi-mode history editing (the default).
-- Get out and back in, then look at history to see that it's preserved across sessions.
+- See that you can use shhh in the shebang line of a script, with `./shebang.shhh`.
+
+
+__NB: This is _NOT_ POSIX-conforming. For example, multi-line commands won't work.__
+
+```
+ls |
+    wc -l
+```
+
+Still, it's pretty darned good. for about a page of code.
