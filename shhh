@@ -19,7 +19,7 @@ setup_history() {
 }
 define_builtin_commands() {
     # builtin commands
-    hush() { echo "Hey BLUG: Shhh!"; }  # if this works, you're running this shell
+    hush() { echo "Hey DevOps: Shhh!"; }  # if this works, you're running this shell
     source()                            # builtin version! overrides bash builtin
     {
         local line                      # do not use global value

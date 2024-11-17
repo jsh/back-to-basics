@@ -1,2 +1,2 @@
 set -o vi
-hello() { echo "hello, BLUG"; }
+hello() { echo "hello, DevOps"; }
