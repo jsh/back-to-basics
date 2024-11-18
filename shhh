@@ -13,8 +13,9 @@ config() {
     set_builtin_defaults
 }
 setup_history() {
-    set -o history                      # turn on history
     HISTFILE=~/.shhh_history            # instead of ~/.bash_history
+    history -r                          # read the old history file into memory
+    shopt -s histappend                 # append to history, don't overwrite
     trap 'history -w' EXIT              # write out history list to $HISTFILE on exit
 }
 define_builtin_commands() {
@@ -34,7 +35,6 @@ set_builtin_defaults() {
 
     # shell variables
     PS1='@ '                            # default prompt, from Thompson shell
-    set -i                              # mark shell interactive
     set -m                              # monitor mode (enable job control)
     define_builtin_commands             # illustrate builtin commands
 }
