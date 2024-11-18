@@ -26,4 +26,6 @@ ls |
     wc -l
 ```
 
-Still, it's pretty darned good. for about a page of code.
+Still, it's pretty darned good, for about two-and-a-half pages of bash --
+only about a sixth the length of the Unix v1, Thompson shell.
+That sounds impressive until you think, "Wait. The Thompson shell was in *assembly language*."
